@@ -4,7 +4,13 @@ class Hospital(models.Model):
     name = models.CharField(max_length=256)
     available_beds = models.PositiveIntegerField()
     crowd = models.PositiveIntegerField(null = True , blank = True)
-    departments = models.ForeignKey('Department', on_delete = models.DO_NOTHING)
+    departments = models.ManyToManyField('Department')
+
+    def __str__(self):
+        return self.name
 
 class Department(models.Model):
     name = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name
